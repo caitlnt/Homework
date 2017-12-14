@@ -6,7 +6,7 @@
 #CTa-HW07-SentimentsPy
 
 
-# In[103]:
+# In[1]:
 
 # OBSERVATIONS
 
@@ -15,7 +15,7 @@
 # 3) CBS has the most positive tweets of all the news organizations.
 
 
-# In[104]:
+# In[2]:
 
 # import libraries to use
 import pandas as pd
@@ -34,7 +34,7 @@ from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 analyzer = SentimentIntensityAnalyzer()
 
 
-# In[105]:
+# In[3]:
 
 # Twitter API Keys
 consumer_key = "DwWSbRJBeKO0OGHM5y8HIO94L"
@@ -48,7 +48,7 @@ auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
 
 
-# In[106]:
+# In[4]:
 
 #Twitter News Organizations
 #BBC - @BBC
@@ -68,7 +68,7 @@ negative_list = []
 neutral_list = []
 
 
-# In[107]:
+# In[5]:
 
 # Loop through news listing to get 500 tweets (100 tweets each news listing)
 for news in news_lists:
@@ -92,6 +92,7 @@ for news in news_lists:
             'Compound': compound,
             'Positive': pos,
             'Negative': neg,
+            'Neutral': neu,
             'Tweets_Ago': counter
         }
         
@@ -99,7 +100,7 @@ for news in news_lists:
         counter +=1      
 
 
-# In[108]:
+# In[6]:
 
 #create dataframe for sentiment dictionary
 news_sentiment_data = pd.DataFrame.from_dict(sentiments)
@@ -108,19 +109,19 @@ news_sentiment_data = pd.DataFrame.from_dict(sentiments)
 news_sentiment_data.head()
 
 
-# In[109]:
+# In[7]:
 
 #Verify news sentiment table has 100 tweets per news list
 news_sentiment_data.groupby('Source').Source.count()
 
 
-# In[110]:
+# In[8]:
 
 #Verify news sentiment table has 500 tweets total
 len(news_sentiment_data)
 
 
-# In[111]:
+# In[9]:
 
 # separate by each source and create 3 separate scatter plot graphs on one graph
 BBC_graph = news_sentiment_data[news_sentiment_data["Source"]=="@BBC"]
@@ -130,7 +131,7 @@ FoxNews_graph = news_sentiment_data[news_sentiment_data["Source"]=="@FoxNews"]
 nytimes_graph = news_sentiment_data[news_sentiment_data["Source"]=="@nytimes"]
 
 
-# In[112]:
+# In[10]:
 
 # Plot 2 graphs required
 
@@ -177,7 +178,7 @@ plt.show()
 
 
 
-# In[113]:
+# In[11]:
 
 # Group compound sentiments by news and calculate average to graph
 # Put into a dataframe
@@ -186,7 +187,7 @@ News_graph = pd.DataFrame(News_graph)
 News_graph
 
 
-# In[114]:
+# In[13]:
 
 # Graph 2 - News Source vs. Tweet Polarity (Compound Sentiments)
  
@@ -196,7 +197,7 @@ Tweet_Polarity = News_graph['Compound']
 ypos = np.arange(len(News))
 plt.xticks(ypos,News)
 
-plt.bar(y_pos, Tweet_Polarity, align='center', alpha=0.5, color = colors)
+plt.bar(ypos, Tweet_Polarity, align='center', alpha=0.5, color = colors)
  
 # Label x and y axis
 plt.xlabel("News Source")
