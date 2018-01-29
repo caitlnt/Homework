@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Max Temp</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap CDN -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link href="https://bootswatch.com/4/minty/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+</head>
+
+
+<font size=3>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="/index.html">Weather Pi</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" style="">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor01">
+    <ul class="navbar-nav mr-auto">
+
+    <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Plots</a>
+    <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 42px, 0px); top: 0px; left: 0px; will-change: transform;">
+      <a class="dropdown-item" href="/viz01-maxtemp.html">Max Temperature</a>
+      <a class="dropdown-item" href="/viz02-humidity.html">Humidity</a>
+      <a class="dropdown-item" href="/viz03-cloudiness.html">Cloudiness</a>
+      <a class="dropdown-item" href="/viz04-windspeed.html">Wind Speed</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="/index.html">Home</a>
+    </div>
+  </li>
+
+      <li class="nav-item active">
+        <a class="nav-link" href="/compare.html">Comparison</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/data.html">Data</a>
+      </li>
+     </ul>
+  </div>
+</nav>
+
+
+<div class="jumbotron">
+  <h1 class="display-3">Analysis: Max Temperature</h1>
+  <p></p>
+<hr></hr>
+</div>
+
+
+<body>
+<p style="margin-top: 2.5em"></p>
+<div class="container-fluid">
+	<div class="row">
+			<div class="col-md-6"><img src="/images/HW06-CityLatvsMaxTemp.jpg"></div>
+			
+			<div class="col-md-6"><font size="3">
+				<p>In this analysis we look at City Latitude vs. Max Temperature.  Cities that are closer to the equator have higher average max temperatures than cities farther from the equator.
+
+</div>
+
+</body>
+
+
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</html>
