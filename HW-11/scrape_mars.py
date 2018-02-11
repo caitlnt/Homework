@@ -3,10 +3,12 @@
 
 import time
 from splinter import Browser
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup as bs
+import pandas as pd
 from selenium import webdriver
 from flask import Flask, render_template, jsonify, redirect
 from flask_pymongo import PyMongo
+import requests
 
 
 def init_browser():
@@ -21,45 +23,99 @@ def scrape():
     mars_data = {}
 
     # visit mars.nasa.gov
-    mars_url = "https://mars.nasa.gov/news/"
-    browser.visit(mars_url)
+    nasa_url = "https://mars.nasa.gov/news/"
+    browser.visit(masa_url)
 
     # search for news
-    news_title = result.find('div', class_='content_title').text
-    news_p = result.find('div', class_='rollover_description_inner').text
+    mars_data["news_title"] = soup.find_all('div', class_='content_title')[0].text
+    mars_data["news_p"] = soup.find_all('div', class_='rollover_description_inner')[0].text
 
-    # find button and click it to search
-    button = browser.find_by_name("button")
-    button.click()
-    time.sleep(2)
+
+    # visit jpl url
+    url = 'https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars'
+    browser.visit(url)
+
     html = browser.html
-    # create a soup object from the html
-    img_soup = BeautifulSoup(html, "html.parser")
-    elem = img_soup.find(id="gridMulti")
-    img_src = elem.find("img")["src"]
+    soup = bs(html, 'html.parser')
 
-    time.sleep(2)
-    # add our src to mars data with a key of src
-    mars_data["src"] = img_src
-    # visit twitter to get weather report
-    weather = "https://twitter.com/marswxreport?lang=en"
-    browser.visit(weather)
-    # grab our new html from twitter
+    browser.click_link_by_partial_text('FULL IMAGE')
+
+    image = soup.find('a',class_="button fancybox")['data-fancybox-href']
+
+    jpl_url = 'https://www.jpl.nasa.gov'
+
+    image_url = jpl_url + image
+
+    mars_data["image_url"] = image_url
+
+
+
+    # visit mars weather
+    marsweath_url = "https://twitter.com/marswxreport?lang=en"
+    browser.visit(marsweath_url)
+
+    # search for news
+    mars_data["mars_weather"] = soup.find_all('p', class_='TweetTextSize TweetTextSize--normal js-tweet-text tweet-text')[0].text
+
+
+
+    # visit mars hemispheres
+    marsweath_url = "https://twitter.com/marswxreport?lang=en"
+    browser.visit(marsweath_url)
+
+    # search for news
+    mars_data["mars_weather"] = soup.find_all('p', class_='TweetTextSize TweetTextSize--normal js-tweet-text tweet-text')[0].text
+
+
+
+
+ url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
+    browser.visit(url)
+
     html = browser.html
-    # create soup object from html
-    forecast_soup = BeautifulSoup(html, "html.parser")
-    report = forecast_soup.find(class_="TweetTextSize TweetTextSize--normal js-tweet-text tweet-text")
-    mars_report = report.find_all("p")
-    # add it to our surf data dict
-    mars_data["report"] = build_report(mars_report)
-    # return our mars data dict
-    return marsdata
+    soup = BeautifulSoup(html, 'html.parser')
 
+    # find all div classes 'item'
+    mhemi_img_url_text = soup.find_all('div', class_="item")
 
-# helper function to build surf report
-def build_report(mars_report):
-    final_report = ""
-    for p in mars_report:
-        final_report += " " + p.get_text()
-        print(final_report)
-    return final_report
+    # get list of URLs for each hemisphere
+    mhemi_img_url_text = []
+
+    for item in mhemi_image:
+        # Use Beautiful Soup's find() method to navigate and retrieve attributes
+        
+        link = item.find('a')
+        href = link['href']
+       
+        url = ('https://astrogeology.usgs.gov' + href)
+   
+        mhemi_img_url_text.append(mh_url)
+        
+        
+    # run for loop going through each url and getting the title and sample url
+    # put values in as dictionary
+    hemisphere_image_urls = []
+
+    for url in mhemi_img_url_text:
+    
+        browser.visit(url)
+        html = browser.html
+        soup = bs(html, 'html.parser')
+        
+        titles = soup.find('h2',class_="title")
+    
+        browser.click_link_by_text('Sample')
+        
+        img = browser.windows[0].next.url
+        
+        urls = {
+            'title':titles.text,
+            'mhemi_img_url':img
+        }
+         
+        hemisphere_image_urls.append(urls)
+
+        mars_data["hemisphere"] = hemisphere_image_urls
+    
+    
+    return mars_data

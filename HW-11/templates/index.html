@@ -24,8 +24,8 @@
         <div class="row"> 
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <h2>Latest Mars News</h2>
-                <h3>{{ mars.news_title }}</h3>
-                <p>{{ mars.news_p }}</p>
+                <h3>{{ mars_data.news_title }}</h3>
+                <p>{{ mars_data.news_p }}</p>
             </div>
         </div>
 
@@ -33,16 +33,16 @@
         <div class="row">
             <div class="col-lg-8 col-md-8 col-sm-8">
                 <h3>Featured Mars Image</h3>
-                <img src= {{ mars.img}} width=750 />
+                <img src= {{mars_data.image_url}} width=750 />
             </div>
 
         <!-- mars weather / facts --> 
             <div class="col-lg-4 col-md-4 col-sm-4">
                 <h3>Current Weather on Mars</h3>
-                <p>{{ mars.weather }}</p>
+                <p>{{ mars_data.mars_weather }}</p>
                 <div class="row">
                     <h3>Mars Facts</h3>
-                    <p>{{ mars.HTML|safe }}</p>
+                    <p>{{ mars_data.mars_facts|safe }}</p>
                 </div>
             </div>
         </div>
@@ -54,21 +54,21 @@
         <div class="row">
             <div class="col-lg6 col-md-6 col-sm-6">
                 <img src= {{ mars.himg01 }} width=500 />
-                <h3>{{ mars.himg01 }}</h3>
+                <h3>{{ mars_data.himg01 }}</h3>
             </div>
             <div class="col-lg6 col-md-6 col-sm-6">
                 <img src= {{ mars.himg02 }} width=500 />
-                <h3>{{ mars.himg02 }}</h3>
+                <h3>{{ mars_data.himg02 }}</h3>
             </div>
         </div>
         <div class="row">
             <div class="col-lg6 col-md-6 col-sm-6">
                 <img src= {{ mars.himg03 }} width=500 />
-                <h3>{{ mars.himg03 }}</h3>
+                <h3>{{ mars_data.himg03 }}</h3>
             </div>
             <div class="col-lg6 col-md-6 col-sm-6">
                 <img src= {{ mars.himg04 }} width=500 />
-                <h3>{{ mars.himg04 }}</h3>
+                <h3>{{ mars_data.himg04 }}</h3>
             </div>
         </div>
     </div>
