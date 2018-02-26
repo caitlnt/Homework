@@ -1,6 +1,8 @@
 
-<!-- CTa - HW13 - Belly Button Biodiversity-->
+<!-- CTa - HW13 - Belly Button Biodiversity
+Part 03 - Website
 
+-->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -28,18 +30,19 @@
     </div>
     <!-- End Jumbotron -->
 
+
+
+
     <!-- Plotly - Drop Down -->
     <div class="container">
         <div class="col-md-4">
             <h4>SELECT Sample</h4>
-            <div id="plotly-target">
+            <div id="nameSampleSelect">
                 <select id="selDataset" onchange="optionChanged(this.value)">
                     <!-- sample input here -->
-                        {% for i in sample_names_list %}
+                        {% for i in df_list %}
                             <option value = {{ i }}>{{ i }}</option>
                         {% endfor %}
-                    <!-- <option value="BB_940">BB_940</option>
-                         <option value="BB_941">BB_941</option> -->
     
                 </select>
                 
@@ -49,10 +52,12 @@
 
   
 
+     <div id="pie"></div>
+
     <!-- Pie Chart -->
     <div class="container">
         <div class ="col-md-6">
-            <div id="plot">
+             <div id="pie"></div>
 
             </div>
         </div>
