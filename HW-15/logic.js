@@ -10,24 +10,25 @@ function markerSize(magnitude){
 // Function to determine marker color based on magnitude
 function markerColor(magnitude){
     if (magnitude <1) {
-        return("LightGreen");
+        return("#A7226E");
     }
     else if (magnitude <2){
-        return ("GreenYellow");
+        return ("#EC2049");
     } 
     else if (magnitude <3){
-        return ("Yellow");
+        return ("#F26B38");
     }
     else if (magnitude <4){
-        return ("Pink");
+        return ("#F7DB4F");
     }
     else if (magnitude <5) {
-        return ("Orange");
+        return ("#2F9599");
     }
     else {
-        return ("Red");
+        return ("#547980");
     }
 }
+
 
 
 // Setup base map variables
@@ -46,8 +47,8 @@ var pencil = L.tileLayer(mapBoxURL, {id: idPencil, attribution: attribution, acc
 
 // Creating map object - center of map is UCI
 var map = L.map("map", {
-    center: [33.640495, -117.844296],
-    zoom: 12,
+    center: [33.942466, -117.229672],
+    zoom: 5,
     layers: [streets]
 });
 
@@ -133,7 +134,9 @@ legend.addTo(map);
 
 
 // Fetch and render tectonic plate boundries on map
-var link = "PB2002_plates.json";
+
+var link = "https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_plates.json";
+//var link = "PB2002_plates.json";
 
 var results=d3.json(link);
 
@@ -152,7 +155,7 @@ d3.json(link, function(data) {
                 },
                 // We set the style for each circleMarker using our styleInfo function.
                 style: function(feature){
-                    return {color: "Orange",
+                    return {color: "#8D5524",
                             weight: 2,
                            fillOpacity: 0};
                 }
