@@ -48,7 +48,7 @@ var pencil = L.tileLayer(mapBoxURL, {id: idPencil, attribution: attribution, acc
 // Creating map object - center of map is UCI
 var map = L.map("map", {
     center: [33.942466, -117.229672],
-    zoom: 5,
+    zoom: 6,
     layers: [streets]
 });
 
